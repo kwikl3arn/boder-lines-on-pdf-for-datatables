@@ -1,0 +1,167 @@
+<script>
+$('#example').DataTable({
+        lengthMenu: [
+            [4, 7, 10, 15, 20, -1],
+            [4, 7, 10, 15, 20, "Todo"]
+        ],
+        responsive: true,
+        paging: true,
+        pagingType: "full_numbers",
+        stateSave: true,
+        processing: true,
+        dom: 'Blftirp',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                text: '<i class="fa fa-files-o"></i>',
+                titleAttr: 'Copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF',
+                extension: ".pdf",
+                filename: "name",
+                title: "",
+                orientation: 'landscape',
+                customize: function (doc) {
+
+                    doc.styles.tableHeader = {
+                        color: 'black',
+                        background: 'grey',
+                        alignment: 'center'
+                    }
+
+                    doc.styles = {
+                        subheader: {
+                            fontSize: 10,
+                            bold: true,
+                            color: 'black'
+                        },
+                        tableHeader: {
+                            bold: true,
+                            fontSize: 10.5,
+                            color: 'black'
+                        },
+                        lastLine: {
+                            bold: true,
+                            fontSize: 11,
+                            color: 'blue'
+                        },
+                        defaultStyle: {
+                            fontSize: 10,
+                            color: 'black'
+                        }
+                    }
+
+                    var objLayout = {};
+                    objLayout['hLineWidth'] = function(i) { return .8; };
+                    objLayout['vLineWidth'] = function(i) { return .5; };
+                    objLayout['hLineColor'] = function(i) { return '#aaa'; };
+                    objLayout['vLineColor'] = function(i) { return '#aaa'; };
+                    objLayout['paddingLeft'] = function(i) { return 8; };
+                    objLayout['paddingRight'] = function(i) { return 8; };
+                    doc.content[0].layout = objLayout;
+
+                    // margin: [left, top, right, bottom]
+
+                    doc.content.splice(0, 0, {
+                        text: [
+                            {text: 'Texto 0', italics: true, fontSize: 12}
+                        ],
+                        margin: [0, 0, 0, 12],
+                        alignment: 'center'
+                    });
+
+                    doc.content.splice(0, 0, {
+
+                        table: {
+                            widths: [300, '*', '*'],
+                            body: [
+                                [
+                                    {text: 'Texto 1', bold: true, fontSize: 10}
+                                    , {text: 'Texto 2', bold: true, fontSize: 10}
+                                    , {text: 'Texto 3', bold: true, fontSize: 10}]
+                            ]
+                        },
+
+                        margin: [0, 0, 0, 12],
+                        alignment: 'center'
+                    });
+
+
+                    doc.content.splice(0, 0, {
+
+                        table: {
+                            widths: [300, '*'],
+                            body: [
+                                [
+                                    {
+                                        text: [
+                                            {text: 'Texto 4', fontSize: 10},
+                                            {
+                                                text: 'Texto 5',
+                                                bold: true,
+                                                fontSize: 10
+                                            }
+
+                                        ]
+                                    }
+                                    , {
+                                    text: [
+                                        {
+                                            text: 'Texto 6',
+                                            bold: true, fontSize: 18
+                                        },
+                                        {
+                                            text: 'Texto 7',
+                                            fontSize: 10
+                                        }
+
+                                    ]
+                                }]
+                            ]
+                        },
+
+                        margin: [0, 0, 0, 22],
+                        alignment: 'center'
+                    });
+
+
+                },
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: 'CSV',
+                fieldSeparator: ';',
+                fieldBoundary: '"',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+
+            {
+                extend: 'print',
+                text: '<i class="fa fa-print"></i>',
+                exportOptions: {
+                    columns: ':visible',
+                }
+            },
+
+            {
+                extend: 'colvis',
+                postfixButtons: ['colvisRestore'],
+                collectionLayout: 'fixed four-column'
+            }
+
+        ]
+
+    });
+    </script>
