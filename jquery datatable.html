@@ -525,38 +525,65 @@
                 customize: function (doc) {
 
                     doc.styles.tableHeader = {
-                        color: 'black',
-                        background: 'grey',
+                        color: 'red',
+                        background: 'black',
                         alignment: 'center'
-                    }
+                    };
 
+     
                     doc.styles = {
                         subheader: {
                             fontSize: 10,
                             bold: true,
-                            color: 'black'
+                            color: 'white'
+                           
                         },
+                        
+                        tableBodyEven : {
+                        alignment: 'center'
+                        },
+                        
+                        tableBodyOdd : {
+                        alignment: 'center'
+                        },
+                        
                         tableHeader: {
                             bold: true,
                             fontSize: 10.5,
-                            color: 'black'
+                             fillColor:"#4B6EA1",
+                            color: 'white'
+                           
                         },
+                        tableFooter: {
+                        background: 'blue',
+                        alignment: 'right'
+                        },
+                        
+                        title: {
+                        color: 'red',
+                        fontSize: '10',
+                        background: 'blue',
+                        alignment: 'center'
+                        },
+                        
                         lastLine: {
                             bold: true,
                             fontSize: 11,
-                            color: 'blue'
+                            color: 'black'
+                           
                         },
                         defaultStyle: {
                             fontSize: 10,
                             color: 'black'
+                            
                         }
-                    }
+                    };
 
                     var objLayout = {};
                     objLayout['hLineWidth'] = function(i) { return .8; };
                     objLayout['vLineWidth'] = function(i) { return .5; };
-                    objLayout['hLineColor'] = function(i) { return '#aaa'; };
-                    objLayout['vLineColor'] = function(i) { return '#aaa'; };
+                    objLayout['hLineColor'] = function(i) { return '#000000'; };
+                    objLayout['vLineColor'] = function(i) { return '#000000'; };
                     objLayout['paddingLeft'] = function(i) { return 8; };
                     objLayout['paddingRight'] = function(i) { return 8; };
                     doc.content[0].layout = objLayout;
